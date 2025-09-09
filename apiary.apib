@@ -33,10 +33,10 @@ Model Header containing AccessToken
 
 # Group Audit Data
 
-## Created Audit Data [/Audit/{TradingEntityId}/Created/{AuditDate}/{DataType}]
-`GET` Audit Data records of action type Created.
+## Created Audit Data [/Audit/{TradingEntityId}/CreatedRecord/{AuditDate}/{DataType}]
+`GET` Audit Data records of action type Create.
 
-### List Created Audit Data [GET]
+### List Create Audit Data [GET]
 |Property|Description|Type|Max Length|Notes|Constraint|
 |--------|-----------|----|----------|-----|----------|
 |UserInitials|User Initials|`string`|3|||
@@ -54,7 +54,80 @@ Model Header containing AccessToken
 
 + Response 200 (application/json; charset=utf-8)
     + Attributes 
-        + Data (array [CreatedAuditData])
+        + Data (array [CreatedDeletedAuditData])
+        + Pagination (Pagination)
+        + Response (200 SuccessResponse)
+
++ Response 400 (application/json; charset=utf-8)
+    + Attributes (400 BadReadResponse)
+
+  
++ Response 404 (application/json; charset=utf-8)
+    + Attributes (404 Response)
+
++ Response 405 (application/json; charset=utf-8)
+    + Attributes (405 Response)
+
+## Updated Audit Data [/Audit/{TradingEntityId}/UpdatedRecord/{AuditDate}/{DataType}]
+`GET` Audit Data records of action type Update.
+
+### List Update Audit Data [GET]
+|Property|Description|Type|Max Length|Notes|Constraint|
+|--------|-----------|----|----------|-----|----------|
+|UserInitials|User Initials|`string`|3|||
+|DataType|Data Type|`string`|30|||
+|AssetReference|Asset Reference|`string`|4000|||
+|AuditDate|Audit Date|`number`||||
+|OldValue|Old Value|`string`|255|||
+|NewValue|New Value|`string`|255|||
+
+
++ Request
+    [AccessToken][]
+    
++ Parameters
+    + TradingEntityId (required, string, `JT`) ... Identify specific trading entity. 
+    + AuditDate (required, number, `20250908`) ... Audit Date of records.
+    + DataType (required, string, `All Phys01`) ... Data Type group of records.
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes 
+        + Data (array [UpdatedAuditData])
+        + Pagination (Pagination)
+        + Response (200 SuccessResponse)
+
++ Response 400 (application/json; charset=utf-8)
+    + Attributes (400 BadReadResponse)
+
+  
++ Response 404 (application/json; charset=utf-8)
+    + Attributes (404 Response)
+
++ Response 405 (application/json; charset=utf-8)
+    + Attributes (405 Response)
+
+## Deleted Audit Data [/Audit/{TradingEntityId}/DeletedRecord/{AuditDate}/{DataType}]
+`GET` Audit Data records of action type Delete.
+
+### List Update Audit Data [GET]
+|Property|Description|Type|Max Length|Notes|Constraint|
+|--------|-----------|----|----------|-----|----------|
+|UserInitials|User Initials|`string`|3|||
+|DataType|Data Type|`string`|30|||
+|AssetReference|Asset Reference|`string`|4000|||
+|AuditDate|Audit Date|`number`||||
+
++ Request
+    [AccessToken][]
+    
++ Parameters
+    + TradingEntityId (required, string, `JT`) ... Identify specific trading entity. 
+    + AuditDate (required, number, `20250908`) ... Audit Date of records.
+    + DataType (required, string, `All Phys01`) ... Data Type group of records.
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes 
+        + Data (array [CreatedDeletedAuditData])
         + Pagination (Pagination)
         + Response (200 SuccessResponse)
 
@@ -250,11 +323,19 @@ Model Header containing AccessToken
 + FailureText: SAP Error 1234 (string)
 + DocumentReference: P00001.000 (string)
 
-## CreatedAuditData (object)
+## CreatedDeletedAuditData (object)
 + UserInitials: DT (string)
 + DataType: All Phys01 (string)
 + AssetReference: P00001.000 (string)
 + AuditDate: 20250908 (number)
+
+## UpdatedAuditData (object)
++ UserInitials: DT (string)
++ DataType: All Phys01 (string)
++ AssetReference: P00001.000 (string)
++ AuditDate: 20250908 (number)
++ OldValue: COLOMB (string)
++ NewValue: COSTA (string)
 
 ## Pagination (object)
 + Total: 547 (number) - total number of records available
