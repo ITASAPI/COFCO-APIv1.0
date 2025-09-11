@@ -77,12 +77,12 @@ Model Header containing AccessToken
 ### List Update Audit Data [GET]
 |Property|Description|Type|Max Length|Notes|Constraint|
 |--------|-----------|----|----------|-----|----------|
+|OldValue|Old Value|`string`|255|||
+|NewValue|New Value|`string`|255|||
 |UserInitials|User Initials|`string`|3|||
 |DataType|Data Type|`string`|30|||
 |AssetReference|Asset Reference|`string`|4000|||
 |AuditDate|Audit Date|`number`||||
-|OldValue|Old Value|`string`|255|||
-|NewValue|New Value|`string`|255|||
 
 
 + Request
@@ -333,12 +333,12 @@ Model Header containing AccessToken
 + AuditDate: 20250908 (number)
 
 ## UpdatedAuditData (object)
++ OldValue: COLOMB (string)
++ NewValue: COSTA (string)
 + UserInitials: DT (string)
 + DataType: All Phys01 (string)
 + AssetReference: P00001.000 (string)
 + AuditDate: 20250908 (number)
-+ OldValue: COLOMB (string)
-+ NewValue: COSTA (string)
 
 ## Pagination (object)
 + Total: 547 (number) - total number of records available
